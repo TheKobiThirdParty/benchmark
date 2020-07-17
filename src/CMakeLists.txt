@@ -87,9 +87,9 @@ if (BENCHMARK_ENABLE_INSTALL)
   install(
     TARGETS benchmark benchmark_main
     EXPORT ${targets_export_name}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION lib
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
   install(
@@ -99,7 +99,7 @@ if (BENCHMARK_ENABLE_INSTALL)
 
   install(
       FILES "${project_config}" "${version_config}"
-      DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+      DESTINATION "share/${PROJECT_NAME}/cmake")
 
   install(
       FILES "${pkg_config}"
@@ -107,6 +107,7 @@ if (BENCHMARK_ENABLE_INSTALL)
 
   install(
       EXPORT "${targets_export_name}"
-      NAMESPACE "${namespace}"
-      DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+      DESTINATION "share/${PROJECT_NAME}/cmake")
+
+  install(FILES ${PROJECT_SOURCE_DIR}/package.xml DESTINATION share/${PROJECT_NAME})
 endif()
